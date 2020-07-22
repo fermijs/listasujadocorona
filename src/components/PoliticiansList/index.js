@@ -1,9 +1,11 @@
 import React from 'react';
 import styled from 'styled-components';
-import axios from 'axios';
 import { mockedPoliticanList } from './mockedPoliticanList';
+import { getApiUrl } from '../../helpers/GetApiUrl';
 
 import PoliticianCard from '../PoliticianCard';
+import SectionByline from '../SectionByline';
+import GetInTouch from '../GetInTouch';
 
 const Wrapper = styled.section`
     display: block;
@@ -22,8 +24,8 @@ const Container = styled.div`
 `;
 
 export default class PoliticiansList extends React.Component {
-    constructor() {
-        super();
+    constructor(props) {
+        super(props);
 
         this.state = {
             isLoading: true,
@@ -32,14 +34,19 @@ export default class PoliticiansList extends React.Component {
     }
 
     componentDidMount() {
-        return new Promise(() => {
-            setTimeout(() => {
+        const { apiRoute } = this.props;
+
+        return fetch(getApiUrl(apiRoute))
+            .then(response => response.json())
+            .then(politicians => {
                 this.setState({
                     isLoading: false,
-                    politicians: mockedPoliticanList
+                    politicians
                 });
-            }, 2000);
-        });
+            })
+            .catch(error => {
+                console.error(error);
+            });
     }
 
     renderCards(politicians, isLoading) {
@@ -50,7 +57,7 @@ export default class PoliticiansList extends React.Component {
                     pointerEvents: isLoading ? 'none' : 'auto',
                     textDecoration: 'none'
                 }}
-                href={`detalhes/${politician.id}`}
+                href={`detalhes/${politician.slug}`}
             >
                 <PoliticianCard
                     politician={politician}
@@ -66,9 +73,16 @@ export default class PoliticiansList extends React.Component {
 
         return (
             <Wrapper>
-                <Container>
-                    {this.renderCards(data, isLoading)}
-                </Container>
+                {!isLoading && !data.length ? (
+                    <section>
+                        <SectionByline noSpacing={true} text="Ainda não existem políticos com este critério." />
+                        <GetInTouch noSpacing={true} />
+                    </section>
+                ) : (
+                    <Container>
+                        {this.renderCards(data, isLoading)}
+                    </Container>
+                )}
             </Wrapper>
         );
     }

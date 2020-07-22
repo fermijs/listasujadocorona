@@ -32,7 +32,7 @@ const Byline = styled.p`
 
 const HeaderElement = styled.header`
     background-color: cornflowerblue;
-    background-image: ${props => `url("/images/estados/${props.theme.estado}.svg")`};
+    background-image: url('${props => props.theme.headerImage}');
     background-size: cover;
     background-position: center center;
     padding: 80px 40px;
@@ -51,8 +51,10 @@ const HeaderElement = styled.header`
 `;
 
 const Header = ({ title, estado }) => {
+    const headerImage = estado ? `/images/estados/${estado}.svg` : `/images/covid.png`;
+
     return (
-        <HeaderElement theme={{estado}}>
+        <HeaderElement theme={{headerImage}}>
             <Title>
                 {title ? title : 'Lista suja do Corona'}
             </Title>

@@ -1,6 +1,7 @@
 import React from 'react';
 import Home from './views/Home';
 import Details from './views/Details';
+import StateDetail from "./views/StateDetail";
 import NotFound from './views/NotFound';
 import { createGlobalStyle } from 'styled-components';
 import { Reset } from 'styled-reset';
@@ -26,6 +27,9 @@ function App() {
         <Switch>
           <Route exact path="/detalhes/:id">
             <Details />
+          </Route>
+          <Route exact path="/estados/:estado">
+            <StateDetail />
           </Route>
           <Route exact path="/">
             <Home />
