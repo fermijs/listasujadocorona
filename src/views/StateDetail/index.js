@@ -19,7 +19,7 @@ const StateDetail = props => {
             <div>
                 <SectionTitle text={`Lista de Políticos`}/>
                 <PoliticiansList
-                    apiRoute={`politicans?state=${estado}`}
+                    apiRoute={`politicans?state=${estado.toUpperCase()}`}
                 />
             </div>
             <section>

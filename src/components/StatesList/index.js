@@ -48,6 +48,7 @@ const StatesList = props => {
 
         return (
             <FlagWrapper
+                title={estados[key]}
                 theme={{image}}
                 key={key}
                 href={`estados/${key}`}

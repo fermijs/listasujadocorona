@@ -1,8 +1,9 @@
 import React from 'react';
 import Home from './views/Home';
 import Details from './views/Details';
-import StateDetail from "./views/StateDetail";
+import StateDetail from './views/StateDetail';
 import NotFound from './views/NotFound';
+import Navigator from './components/Navigator';
 import { createGlobalStyle } from 'styled-components';
 import { Reset } from 'styled-reset';
 import {
@@ -10,7 +11,7 @@ import {
   Switch,
   Route,
   Redirect
-} from "react-router-dom";
+} from 'react-router-dom';
 
 
 const GlobalStyle = createGlobalStyle`
@@ -23,19 +24,20 @@ const GlobalStyle = createGlobalStyle`
 function App() {
   return (
     <div>
+      <Navigator />
       <Router>
         <Switch>
-          <Route exact path="/detalhes/:id">
+          <Route exact path='/detalhes/:id'>
             <Details />
           </Route>
-          <Route exact path="/estados/:estado">
+          <Route exact path='/estados/:estado'>
             <StateDetail />
           </Route>
-          <Route exact path="/">
+          <Route exact path='/'>
             <Home />
           </Route>
-          <Route path="/404" component={NotFound} />
-          <Redirect to="/404" />
+          <Route path='/404' component={NotFound} />
+          <Redirect to='/404' />
         </Switch>
       </Router>
       <Reset />
