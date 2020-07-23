@@ -7,6 +7,7 @@ import Footer from '../../components/Footer';
 import PoliticianCard from '../../components/PoliticianCard';
 import EvidenceList from "../../components/EvidenceList";
 import Meta from '../../components/Meta';
+import { getApiUrl } from "../../helpers/GetApiUrl";
 
 import { mockedPolitician } from '../../components/PoliticiansList/mockedPoliticanList';
 
@@ -24,14 +25,16 @@ class Details extends React.Component {
     }
 
     componentDidMount() {
-        return new Promise(() => {
-            setTimeout(() => {
+        const { id } = this.props.match.params;
+
+        return fetch(getApiUrl(`politicans/${id}`))
+            .then(response => response.json())
+            .then(politician => {
                 this.setState({
                     isLoading: false,
-                    politician: mockedPolitician
+                    politician
                 });
-            }, 2000);
-        });
+            });
     }
 
     render() {
@@ -45,7 +48,7 @@ class Details extends React.Component {
                     title={!isLoading && politician.name}
                     route={`detalhes/${id}`}
                 />
-                <Header estado="rs"/>
+                <Header />
                 <Wrapper>
                     <PoliticianCard
                         politician={politician}

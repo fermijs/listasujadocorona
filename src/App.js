@@ -4,7 +4,7 @@ import Details from './views/Details';
 import StateDetail from './views/StateDetail';
 import NotFound from './views/NotFound';
 import Navigator from './components/Navigator';
-import { createGlobalStyle } from 'styled-components';
+import styled, { createGlobalStyle } from "styled-components";
 import { Reset } from 'styled-reset';
 import {
   BrowserRouter as Router,
@@ -21,25 +21,35 @@ const GlobalStyle = createGlobalStyle`
   }
 `;
 
+const RouterWrapper = styled.div`
+  padding-top: 60px;
+
+  @media (min-width: 768px) {
+    padding-top: 80px;
+  }
+`;
+
 function App() {
   return (
     <div>
       <Navigator />
-      <Router>
-        <Switch>
-          <Route exact path='/detalhes/:id'>
-            <Details />
-          </Route>
-          <Route exact path='/estados/:estado'>
-            <StateDetail />
-          </Route>
-          <Route exact path='/'>
-            <Home />
-          </Route>
-          <Route path='/404' component={NotFound} />
-          <Redirect to='/404' />
-        </Switch>
-      </Router>
+      <RouterWrapper>
+        <Router>
+          <Switch>
+            <Route exact path="/detalhes/:id">
+              <Details />
+            </Route>
+            <Route exact path="/estados/:estado">
+              <StateDetail />
+            </Route>
+            <Route exact path="/">
+              <Home />
+            </Route>
+            <Route path="/404" component={NotFound} />
+            <Redirect to="/404" />
+          </Switch>
+        </Router>
+      </RouterWrapper>
       <Reset />
       <GlobalStyle />
     </div>

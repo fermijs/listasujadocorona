@@ -11,14 +11,25 @@ const Wrapper = styled.div`
 
 const Container = styled.div`
     display: grid;
-    grid-gap: 1rem;
+    grid-gap: 2rem;
+    grid-template-columns: repeat(auto-fill, minmax(60px, 2fr));
+`;
 
-    @media (min-width: 768px) {
-        grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+const StateWrapper = styled.a`
+    align-items: center;
+    display: flex;
+    justfiy-content: center;
+    flex-direction: column;
+    text-decoration: none;
+
+    &:hover {
+        span {
+            color: blue;
+        }
     }
 `;
 
-const FlagWrapper = styled.a`
+const FlagWrapper = styled.div`
     background-color: cornflowerblue;
     background-image: url('${(props) => props.theme.image}');
     background-size: cover;
@@ -26,7 +37,7 @@ const FlagWrapper = styled.a`
     border: 3px solid black;
     cursor: pointer;
     display: block;
-    text-decoration: none;
+    width: 100%;
 
     &:visited,
     &:active {
@@ -34,7 +45,7 @@ const FlagWrapper = styled.a`
     }
 
     &:hover {
-        border: 3px solid black;
+        border: 3px solid blue;
     }
 `;
 
@@ -42,19 +53,33 @@ const Flag = styled.div`
     padding-bottom: 50%;
 `;
 
+const StateName = styled.span`
+    color: black;
+    display: block;
+    margin-top: 5px;
+    text-align: center;
+    text-decoration: underline;
+`;
+
 const StatesList = props => {
     const states = Object.keys(estados).map(key => {
         const image = `/images/estados/${key}.svg`;
 
         return (
-            <FlagWrapper
-                title={estados[key]}
-                theme={{image}}
+            <StateWrapper
                 key={key}
-                href={`estados/${key}`}
+                href={`/estados/${key}`}
             >
-                <Flag/>
-            </FlagWrapper>
+                <FlagWrapper
+                    title={estados[key]}
+                    theme={{image}}
+                >
+                    <Flag/>
+                </FlagWrapper>
+                <StateName>
+                    {estados[key]}
+                </StateName>
+            </StateWrapper>
         );
     });
 
