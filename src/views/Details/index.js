@@ -27,9 +27,11 @@ class Details extends React.Component {
     componentDidMount() {
         const { id } = this.props.match.params;
 
-        return fetch(getApiUrl(`politicans/${id}`))
+        return fetch(getApiUrl(`politicans?slug=${id}`))
             .then(response => response.json())
-            .then(politician => {
+            .then(response => {
+                const politician = response[0];
+
                 this.setState({
                     isLoading: false,
                     politician
