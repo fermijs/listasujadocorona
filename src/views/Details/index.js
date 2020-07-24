@@ -12,6 +12,8 @@ import { getApiUrl } from "../../helpers/GetApiUrl";
 import { mockedPolitician } from '../../components/PoliticiansList/mockedPoliticanList';
 
 const Wrapper = styled.section`
+    margin: 0 auto;
+    max-width: 768px;
     padding: 40px 20px;
 
     @media (min-width: 768px) {
