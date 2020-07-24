@@ -7,6 +7,7 @@ import Footer from '../../components/Footer';
 import PoliticianCard from '../../components/PoliticianCard';
 import EvidenceList from "../../components/EvidenceList";
 import Meta from '../../components/Meta';
+import SocialSharing from '../../components/SocialSharing';
 import { getApiUrl } from "../../helpers/GetApiUrl";
 
 import { mockedPolitician } from '../../components/PoliticiansList/mockedPoliticanList';
@@ -49,6 +50,7 @@ class Details extends React.Component {
         const { id } = this.props.match.params;
         const politician = this.state.politician ? this.state.politician : mockedPolitician;
         const { isLoading } = this.state;
+        const socialMessage = `${politician.name}${politician.twitter && ` (${politician.twitter})`} está na lista de políticos que apoiam medidas anti-ciência. https://listasujadocorona.com.br/${politician.slug} #ListaSujaDoCorona`
 
         return (
             <main>
@@ -63,6 +65,7 @@ class Details extends React.Component {
                         isLoading={isLoading}
                         isDetailView={true}
                     />
+                    { !isLoading &&  <SocialSharing message={socialMessage}/>}
                     { !isLoading && <EvidenceList evidences={politician.evidences} /> }
                 </Wrapper>
                 <Footer />
