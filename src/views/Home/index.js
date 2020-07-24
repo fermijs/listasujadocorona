@@ -16,7 +16,7 @@ const Home = () => {
             <Header/>
             <section>
                 <SectionTitle text="O que é"/>
-                <SectionByline text="A lista suja do corona é uma plataforma em que você pode conferir se o seu candidato nas eleições de 2020 apoiou medidas que vão contra as recomendações da Organização Mundial da Saúde para mitigação do contágio com o novo corona-vírus."/>
+                <SectionByline text="A lista suja do corona é uma plataforma em que você pode conferir se o seu candidato nas eleições de 2020 espalhou desinformação a respeito do corona-vírus."/>
                 <GetInTouch />
             </section>
             <section>

@@ -1,9 +1,10 @@
 export const mockedPolitician = {
     name: 'Example Politician',
-    id: 'example-politician',
+    slug: 'example-politician',
     profilePicture: 'https://via.placeholder.com/150',
     party: 'Example Party',
     twitter: 'exampleTwitter',
+    state: 'RJ',
     evidences: [
         {
             description: 'Example Evidence',
