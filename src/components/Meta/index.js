@@ -12,6 +12,7 @@ const Meta = ({title, description, route}) => {
             <title>{parsedTitle}</title>
             <meta property="og:title" content={parsedTitle}/>
             <link rel="canonical" href={`https://listasujadocorona.com.br/${route}`} />
+            <meta property="og:url" content={`https://listasujadocorona.com.br/${route}`} />
             <meta name="description" content={description || DEFAULT_DESCRIPTION} />
             <meta property="og:description" content={description || DEFAULT_DESCRIPTION} />
         </Helmet>
