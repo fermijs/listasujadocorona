@@ -57,7 +57,7 @@ export default class PoliticiansList extends React.Component {
                     pointerEvents: isLoading ? 'none' : 'auto',
                     textDecoration: 'none'
                 }}
-                href={`detalhes/${politician.slug}`}
+                href={`/detalhes/${politician.slug}`}
             >
                 <PoliticianCard
                     politician={politician}

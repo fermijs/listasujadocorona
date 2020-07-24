@@ -1,7 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
 import Skeleton from 'react-loading-skeleton';
-import { v4 as uuidv4 } from 'uuid';
+import CardDetailItem from '../CardDetailItem';
+import { estados } from "../../constants/estados";
 
 const Container = styled.div`
     align-items: center;
@@ -32,39 +33,13 @@ const Name = styled.h3`
     font-weight: 700;
     margin-bottom: 10px;
     text-align: center;
+    width: 100%;
 `;
 
 const DetailList = styled.ul`
     display: block;
     width: 100%;
 `;
-
-const DetailTitle = styled.em`
-    color: black;
-    font-size: 16px;
-    font-weight: 700;
-    margin-right: 5px;
-`;
-
-const DetailContent = styled.span`
-    color: black;
-    font-size: 16px;
-`;
-
-const SUPPORTED_DETAILS = [
-    {
-        key: 'party',
-        value: 'Partido'
-    },
-    {
-        key: 'twitter',
-        value: 'Twitter'
-    },
-    {
-        key: 'evidence',
-        value: 'Postagens anticientíficas'
-    }
-];
 
 const Wrapper = styled.div`
     border: 3px solid #000;
@@ -81,46 +56,8 @@ const Wrapper = styled.div`
     }
 `;
 
-const DetailItem = styled.li`
-    display: flex;
-    justify-content: center;
-
-    &:not(:last-child) {
-        margin-bottom: 10px;
-    }
-
-    > span {
-        flex-grow: ${props => ( props.theme.isLoading ? 1 : 'auto' )};
-    }
-`;
-
 const PoliticianCard = ({ politician, isLoading, isDetailView }) => {
-    const details = SUPPORTED_DETAILS.map(detail => {
-        const item = politician[detail.key];
-
-        return (
-            !item
-            ? <></>
-            : (
-                <DetailItem key={uuidv4()} theme={{isLoading}}>
-                    {
-                        isLoading
-                        ? <Skeleton />
-                        : (
-                            <>
-                                <DetailTitle>
-                                    {detail.value}:
-                                </DetailTitle>
-                                <DetailContent>
-                                    {Array.isArray(item) ? item.length : item}
-                                </DetailContent>
-                            </>
-                        )
-                    }
-                </DetailItem>
-            )
-        );
-    });
+    const state = politician.state && politician.state.toLowerCase();
 
     return (
         <Wrapper
@@ -148,9 +85,31 @@ const PoliticianCard = ({ politician, isLoading, isDetailView }) => {
                 <Name>
                     {isLoading ? <Skeleton /> : politician.name}
                 </Name>
-                <DetailList>
-                    {details}
-                </DetailList>
+                {
+                    !isLoading &&
+                    <DetailList>
+                        <CardDetailItem
+                            headline={`Estado`}
+                            content={estados[state]}
+                            icon={`/images/estados/${state}.svg`}
+                            alt={estados[state]}
+                        />
+                        <CardDetailItem
+                            headline={`Partido`}
+                            content={politician.party}
+                        />
+                        {
+                            politician.twitter && (
+                                <CardDetailItem headline={`Twitter`}>
+                                    <a href={`https://twitter.com/${politician.twitter}`} target='_blank' rel='noopener noreferrer'>
+                                        {politician.twitter}
+                                    </a>
+                                </CardDetailItem>
+                            )
+                        }
+                        <CardDetailItem headline={`Evidências`} content={politician.evidences.length} />
+                    </DetailList>
+                }
             </Container>
         </Wrapper>
     );
