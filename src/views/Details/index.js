@@ -12,7 +12,11 @@ import { getApiUrl } from "../../helpers/GetApiUrl";
 import { mockedPolitician } from '../../components/PoliticiansList/mockedPoliticanList';
 
 const Wrapper = styled.section`
-    padding: 80px;
+    padding: 40px 20px;
+
+    @media (min-width: 768px) {
+        padding: 80px;
+    }
 `;
 
 class Details extends React.Component {

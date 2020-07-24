@@ -12,6 +12,7 @@
     "react-loading-skeleton": "^2.1.1",
     "react-router-dom": "^5.2.0",
     "react-scripts": "3.4.1",
+    "react-twitter-embed": "^3.0.3",
     "styled-components": "^5.1.1",
     "styled-reset": "^4.2.1",
     "uuid": "^8.2.0"

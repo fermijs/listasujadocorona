@@ -1,32 +1,25 @@
 import React from 'react';
 import styled from 'styled-components';
 import { v4 as uuidv4 } from 'uuid';
+import BorderedCard from '../BorderedCard';
+import { TwitterTweetEmbed } from 'react-twitter-embed';
 
-const Wrapper = styled.section`
-    align-items: center;
-    border: 3px solid #000;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    margin-top: 40px;
-    padding: 40px 20px;
-`;
-
-const Title = styled.h3`
-    color: black;
-    font-size: 24px;
-    font-weight: 700;
-    margin-bottom: 10px;
-`;
 
 const EvidenceListElement = styled.ul`
     display: flex;
     flex-direction: column;
     justify-content: center;
+    padding-top: 10px;
 `;
 
 const EvidenceItem = styled.li`
+    font-size: 16px;
+    line-height: 1.5;
     text-align: center;
+
+    & + li {
+        margin-top: 20px;
+    }
 
     span {
         display: block;
@@ -34,17 +27,17 @@ const EvidenceItem = styled.li`
     }
 
     em {
-        font-size: 16px;
         font-weight: bold;
+    }
+
+    a {
+        word-break: break-all;
     }
 `;
 
 const EvidenceList = ({ evidences }) => {
     return (
-        <Wrapper>
-            <Title>
-                Evidências
-            </Title>
+        <BorderedCard text="Evidências">
             <EvidenceListElement>
                 {
                     evidences.map((evidence, index) => (
@@ -54,14 +47,17 @@ const EvidenceList = ({ evidences }) => {
                                     Evidência {index + 1} - <em>{evidence.description}</em>
                                 </span>
                                 <div>
-                                    <a href={evidence.link} target="_blank" rel="noopener noreferrer">{evidence.description}</a>
+                                    <a href={evidence.link} target="_blank" rel="noopener noreferrer">{evidence.link}</a>
                                 </div>
+                                {
+                                    evidence.source === 'twitter' && <TwitterTweetEmbed tweetId={evidence.tweetId}/>
+                                }
                             </article>
                         </EvidenceItem>
                     ))
                 }
             </EvidenceListElement>
-        </Wrapper>
+        </BorderedCard>
     );
 };
 
