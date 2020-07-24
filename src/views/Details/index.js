@@ -47,7 +47,7 @@ class Details extends React.Component {
         return (
             <main>
                 <Meta
-                    title={!isLoading && politician.name}
+                    title={isLoading ? '' : politician.name}
                     route={`detalhes/${id}`}
                 />
                 <Header />
