@@ -37,7 +37,7 @@ class Details extends React.Component {
         return fetch(getApiUrl(`politicans/${id}`))
             .then(response => response.json())
             .then(response => {
-                const politician = response[0];
+                const politician = response;
 
                 this.setState({
                     isLoading: false,
