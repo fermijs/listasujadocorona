@@ -34,7 +34,10 @@ const Footer = () => {
                 Código aberto no <a href="https://github.com/fermijs/listasujadocorona" target="_blank" rel="noopener noreferrer">Github</a>
             </div>
             <div>
-                Envie sua contribuição para <a href="mailto:listasujadocorona@gmail.com">listasujadocorona@gmail.com</a>
+                <a href={`https://forms.gle/U9fwsayaYGzWhpfU7`} target="_blank" rel="noopener noreferrer">Envie sua denúncia</a>
+            </div>
+            <div>
+                <a href={`https://twitter.com/listasuja`} target="_blank" rel="noopener noreferrer">Siga no twitter @ListaSuja</a>
             </div>
         </StyledFooter>
     );
