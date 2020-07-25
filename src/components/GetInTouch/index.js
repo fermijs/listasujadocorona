@@ -26,11 +26,33 @@ const Container = styled.div`
     }
 `;
 
+const Button = styled.a`
+    background-color: #24a0ed;
+    border: 3px solid black;
+    color: #fff;
+    cursor: pointer;
+    display: block;
+    line-height: 80px;
+    margin: 20px auto 0;
+    max-width: 240px;
+    padding: 10px 40px;
+    text-align: center;
+    text-decoration: none;
+    transition: background-color .125s ease-in-out;
+
+    &:hover {
+        background-color: #3c5b97;
+    }
+`;
+
 const GetInTouch = ({noSpacing}) => {
     return (
         <Container theme={{noSpacing}}>
             <p>
-                Envie sua contribuição ou dúvida para <a href="mailto:listasujadocorona@gmail.com">listasujadocorona@gmail.com</a>.
+                Envia sua denúncia no formulário abaixo
+                <Button href={`https://forms.gle/U9fwsayaYGzWhpfU7`} target="_blank" rel="noopener noreferrer">
+                    Enviar denúncia
+                </Button>
             </p>
         </Container>
     );
