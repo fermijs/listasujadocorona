@@ -34,10 +34,10 @@ class Details extends React.Component {
     componentDidMount() {
         const { id } = this.props.match.params;
 
-        return fetch(getApiUrl(`politicans?slug=${id}`))
+        return fetch(getApiUrl(`politicans/${id}`))
             .then(response => response.json())
             .then(response => {
-                const politician = response[0];
+                const politician = response;
 
                 this.setState({
                     isLoading: false,
