@@ -50,7 +50,7 @@ class Details extends React.Component {
         const { id } = this.props.match.params;
         const politician = this.state.politician ? this.state.politician : mockedPolitician;
         const { isLoading } = this.state;
-        const socialMessage = `${politician.name}${politician.twitter && ` (${politician.twitter})`} está na lista de políticos que apoiam medidas anti-ciência. https://www.listasujadocorona.com.br/${politician.slug} #ListaSujaDoCorona`
+        const socialMessage = `${politician.name}${politician.twitter && ` (${politician.twitter})`} está na lista de políticos que apoiam medidas anti-ciência. https://www.listasujadocorona.com.br/detalhes/${politician.slug} #ListaSujaDoCorona`
 
         return (
             <main>
