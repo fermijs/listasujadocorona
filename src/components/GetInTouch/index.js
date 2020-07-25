@@ -32,6 +32,8 @@ const Button = styled.a`
     color: #fff;
     cursor: pointer;
     display: block;
+    font-size: 24px;
+    font-weight: 700;
     line-height: 80px;
     margin: 20px auto 0;
     max-width: 240px;
