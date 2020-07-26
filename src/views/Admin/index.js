@@ -3,6 +3,8 @@ import styled from 'styled-components';
 import { Helmet } from 'react-helmet';
 import { encode } from "base-64";
 import { getApiUrl } from '../../helpers/GetApiUrl';
+import PoliticianCard from '../../components/PoliticianCard';
+import EvidenceList from '../../components/EvidenceList';
 
 const Wrapper = styled.form`
     align-items: center;
@@ -12,7 +14,7 @@ const Wrapper = styled.form`
     flex-direction: column;
     justify-content: center;
     margin: 40px auto 0;
-    max-width: 768px;
+    max-width: 1024px;
     padding: 40px 20px;
     width: 100%;
 `;
@@ -71,6 +73,10 @@ const InputWrapper = styled.label`
         padding: 10px;
         font-size: 16px;
     }
+`;
+
+const SimpleGrid = styled.div`
+    display: flex;
 `;
 
 export default class AdminPage extends React.Component {
@@ -219,106 +225,114 @@ export default class AdminPage extends React.Component {
                 <Helmet>
                     <meta name='robots' content='noindex' />
                 </Helmet>
-                <InputWrapper>
-                    <span>
-                        USER AUTH
-                    </span>
-                    <input placeholder='Usuario' name='user' value={this.state.auth.user} onChange={this.handleAuth} required />
-                </InputWrapper>
-                <InputWrapper>
-                    <span>
-                        SENHA AUTH
-                    </span>
-                    <input placeholder='Senha' name='password' value={this.state.auth.password} onChange={this.handleAuth} required />
-                </InputWrapper>
-                <InputWrapper>
-                    <span>
-                        Nome
-                    </span>
-                    <input placeholder='Nome do candidato' name='name' value={this.state.politician.name} onChange={this.handleName} required />
-                </InputWrapper>
-                <InputWrapper>
-                    <span>
-                        Slug (URL do candidato)
-                    </span>
-                    <input placeholder='URL do candidato' name='slug' value={this.state.politician.slug} onChange={this.handleInput} required />
-                </InputWrapper>
-                <InputWrapper>
-                    <span>
-                        Estado do candidato (sigla com letra maiuscula, ex: RJ, RS, SP)
-                    </span>
-                    <input placeholder='ESTADO' name='state' value={this.state.politician.state} onChange={this.handleInput} required />
-                </InputWrapper>
-                <InputWrapper>
-                    <span>
-                        URL Imagem de perfil (copiar do Wikipedia ou Twitter)
-                    </span>
-                    <input placeholder='Url imagem de perfil' name='profilePicture' onChange={this.handleInput} required />
-                </InputWrapper>
-                <InputWrapper>
-                    <span>
-                        Partido
-                    </span>
-                    <input placeholder='Sigla do partido do candidato' name='party' onChange={this.handleInput} required />
-                </InputWrapper>
-                <InputWrapper>
-                    <span>
-                        Twitter (com @)
-                    </span>
-                    <input placeholder='Twitter do candidato com @' name='twitter' onChange={this.handleInput} />
-                </InputWrapper>
-                {
-                    this.state.politician.evidences.map((evidence, index) => {
-                        return (
-                            <div key={index}>
-                                <InputWrapper>
-                                    <span>
-                                        Descrição da Evidência
-                                    </span>
-                                    <input
-                                        value={this.state.politician.evidences[index].description}
-                                        placeholder='Exemplo: desinformação'
-                                        name='description'
-                                        data-index={index}
-                                        onChange={this.handleEvidenceEdit}
-                                        required
-                                    />
-                                </InputWrapper>
-                                <InputWrapper>
-                                    <span>
-                                        Link da evidência (preferencialmente twitter)
-                                    </span>
-                                    <input
-                                        value={this.state.politician.evidences[index].link}
-                                        placeholder='twitter.com/xd'
-                                        name='link'
-                                        data-index={index}
-                                        onChange={this.handleEvidenceEdit}
-                                        required
-                                    />
-                                </InputWrapper>
-                                <InputWrapper>
-                                    <span>
-                                        Fonte da evidência
-                                    </span>
-                                    <input
-                                        value={this.state.politician.evidences[index].source}
-                                        placeholder='twitter'
-                                        name='source'
-                                        data-index={index}
-                                        onChange={this.handleEvidenceEdit}
-                                        required
-                                    />
-                                </InputWrapper>
-                            </div>
-                        );
-                    })
-                }
-                <AddEvidence onClick={this.addEvidence}>
-                    Adicionar evidência
-                </AddEvidence>
+                <SimpleGrid>
+                    <div>
+                        <InputWrapper>
+                            <span>
+                                USER AUTH
+                            </span>
+                            <input placeholder='Usuario' name='user' value={this.state.auth.user} onChange={this.handleAuth} required />
+                        </InputWrapper>
+                        <InputWrapper>
+                            <span>
+                                SENHA AUTH
+                            </span>
+                            <input placeholder='Senha' name='password' value={this.state.auth.password} onChange={this.handleAuth} required />
+                        </InputWrapper>
+                        <InputWrapper>
+                            <span>
+                                Nome
+                            </span>
+                            <input placeholder='Nome do candidato' name='name' value={this.state.politician.name} onChange={this.handleName} required />
+                        </InputWrapper>
+                        <InputWrapper>
+                            <span>
+                                Slug (URL do candidato)
+                            </span>
+                            <input placeholder='URL do candidato' name='slug' value={this.state.politician.slug} onChange={this.handleInput} required />
+                        </InputWrapper>
+                        <InputWrapper>
+                            <span>
+                                Estado do candidato (sigla com letra maiuscula, ex: RJ, RS, SP)
+                            </span>
+                            <input placeholder='ESTADO' name='state' value={this.state.politician.state} onChange={this.handleInput} required />
+                        </InputWrapper>
+                        <InputWrapper>
+                            <span>
+                                URL Imagem de perfil (copiar do Wikipedia ou Twitter)
+                            </span>
+                            <input placeholder='Url imagem de perfil' name='profilePicture' onChange={this.handleInput} required />
+                        </InputWrapper>
+                        <InputWrapper>
+                            <span>
+                                Partido
+                            </span>
+                            <input placeholder='Sigla do partido do candidato' name='party' onChange={this.handleInput} required />
+                        </InputWrapper>
+                        <InputWrapper>
+                            <span>
+                                Twitter (com @)
+                            </span>
+                            <input placeholder='Twitter do candidato com @' name='twitter' onChange={this.handleInput} />
+                        </InputWrapper>
+                        {
+                            this.state.politician.evidences.map((evidence, index) => {
+                                return (
+                                    <div key={index}>
+                                        <InputWrapper>
+                                            <span>
+                                                Descrição da Evidência
+                                            </span>
+                                            <input
+                                                value={this.state.politician.evidences[index].description}
+                                                placeholder='Exemplo: desinformação'
+                                                name='description'
+                                                data-index={index}
+                                                onChange={this.handleEvidenceEdit}
+                                                required
+                                            />
+                                        </InputWrapper>
+                                        <InputWrapper>
+                                            <span>
+                                                Link da evidência (preferencialmente twitter)
+                                            </span>
+                                            <input
+                                                value={this.state.politician.evidences[index].link}
+                                                placeholder='twitter.com/xd'
+                                                name='link'
+                                                data-index={index}
+                                                onChange={this.handleEvidenceEdit}
+                                                required
+                                            />
+                                        </InputWrapper>
+                                        <InputWrapper>
+                                            <span>
+                                                Fonte da evidência
+                                            </span>
+                                            <input
+                                                value={this.state.politician.evidences[index].source}
+                                                placeholder='twitter'
+                                                name='source'
+                                                data-index={index}
+                                                onChange={this.handleEvidenceEdit}
+                                                required
+                                            />
+                                        </InputWrapper>
+                                    </div>
+                                );
+                            })
+                        }
+                        <AddEvidence onClick={this.addEvidence}>
+                            Adicionar evidência
+                        </AddEvidence>
+                    </div>
+                    <div style={{marginLeft: '40px', width: '300px'}}>
+                        <PoliticianCard politician={this.state.politician} isDetailView={true}/>
+                        <EvidenceList evidences={this.state.politician.evidences} />
+                    </div>
+                </SimpleGrid>
                 <Button type="submit">
-                    Adicionar
+                    Adicionar Candidato
                 </Button>
             </Wrapper>
         );
