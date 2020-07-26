@@ -35,6 +35,15 @@ const EvidenceItem = styled.li`
     }
 `;
 
+const EvidenceItemWrapper = styled.article`
+    display: flex;
+    flex-direction: column;
+
+    .twitter-tweet {
+        margin: 20px auto;
+    }
+`;
+
 const EvidenceList = ({ evidences }) => {
     return (
         <BorderedCard text="Evidências">
@@ -42,7 +51,7 @@ const EvidenceList = ({ evidences }) => {
                 {
                     evidences.map((evidence, index) => (
                         <EvidenceItem key={uuidv4()}>
-                            <article>
+                            <EvidenceItemWrapper>
                                 <span>
                                     Evidência {index + 1} - <em>{evidence.description}</em>
                                 </span>
@@ -52,7 +61,7 @@ const EvidenceList = ({ evidences }) => {
                                 {
                                     evidence.source === 'twitter' && <TwitterTweetEmbed tweetId={evidence.tweetId}/>
                                 }
-                            </article>
+                            </EvidenceItemWrapper>
                         </EvidenceItem>
                     ))
                 }
