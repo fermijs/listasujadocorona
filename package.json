@@ -8,6 +8,7 @@
     "@testing-library/user-event": "^7.1.2",
     "base-64": "^0.1.0",
     "react": "^16.13.1",
+    "react-adsense": "^0.1.0",
     "react-dom": "^16.13.1",
     "react-helmet": "^6.1.0",
     "react-loading-skeleton": "^2.1.1",

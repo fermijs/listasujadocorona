@@ -8,7 +8,9 @@ import SectionTitle from "../../components/SectionTitle";
 import SectionByline from "../../components/SectionByline";
 import GetInTouch from "../../components/GetInTouch";
 import StatesList from "../../components/StatesList";
+import AdSense from 'react-adsense';
 
+// ads with no set-up
 const Home = () => {
     return (
         <main>
@@ -19,10 +21,20 @@ const Home = () => {
                 <SectionByline text="A lista suja do corona é uma plataforma em que você pode conferir se o seu candidato nas eleições de 2020 espalhou desinformação a respeito do corona-vírus."/>
                 <GetInTouch />
             </section>
+            <AdSense.Google
+                client={ process.env.REACT_APP_AD_SENSE }
+                slot='7806394673'
+                layout='in-article'
+            />
             <section>
                 <SectionTitle text="Encontre políticos por estado" />
                 <StatesList />
             </section>
+            <AdSense.Google
+                client={ process.env.REACT_APP_AD_SENSE }
+                slot='7806394673'
+                layout='in-article'
+            />
             <div>
                 <SectionTitle text="Políticos em alta"/>
                 <PoliticiansList
