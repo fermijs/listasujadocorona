@@ -332,7 +332,7 @@ export default class AdminPage extends React.Component {
                     </div>
                 </SimpleGrid>
                 <Button type="submit">
-                    Adicionar Candidato
+                    Adicionar Politico
                 </Button>
             </Wrapper>
         );

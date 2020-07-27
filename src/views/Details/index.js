@@ -57,6 +57,7 @@ class Details extends React.Component {
                 <Meta
                     title={isLoading ? '' : politician.name}
                     route={`detalhes/${id}`}
+                    image={politician.profilePicture}
                 />
                 <Header />
                 <Wrapper>
